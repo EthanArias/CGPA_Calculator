@@ -8,7 +8,7 @@ int main()
 	std::vector<Course> cList(10);
 	int size = 0;
 
-	std::cout << "How many cources have you taken?" << std::endl;
+	std::cout << "How many cources have you taken? ";
 	std::cin >> size;
 	if (size < 0) {
 		size *= -1;
@@ -20,22 +20,19 @@ int main()
 		std::string courseGrade = "";
 		cList.push_back(Course());
 
-		std::cout << "\tWhat is the name of the " << i+1<< "course?" << std::endl;
+		std::cout << "\tWhat is the name of the " << i+1<< " course? ";
 		std::cin >> courseName;
-		std::cout << "\tWhat is the number of credits for the " << i + 1 << "course?" << std::endl;
+		std::cout << "\tWhat is the number of credits for the " << i + 1 << " course? ";
 		std::cin >> courseCredits;
-		std::cout << "\tWhat is the your grade for the " << i + 1 << "course?" << std::endl;
+		std::cout << "\tWhat is the your grade for the " << i + 1 << " course? ";
 		std::cin >> courseGrade;
-
 		cList[i].setname(courseName);
 		cList[i].setcredits(courseCredits);
 		cList[i].setGrade(courseGrade);
 		cList[i].updateQP();
+		std::cout << "Your quality points for course " << cList[i].getname() << " is " << cList[i].getQP() << std::endl;
 	}
-
-	for (int i = 0; i < size; ++i) {
-		std::cout << "Your quality points for course " << cList[i].getname() << " is " << cList[i].getQP()<< std::endl;
-	}
+	
 
 	std::cout << "Your total GPA is:";
 
