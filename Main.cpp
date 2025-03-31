@@ -29,5 +29,6 @@ int main()
 		cList[cList.size()].setname(courseName);
 		cList[cList.size()].setcredits(courseCredits);
 		cList[cList.size()].setGrade(courseGrade);
+		cList[cList.size()].updateQP();
 	}
 }
