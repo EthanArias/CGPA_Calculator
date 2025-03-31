@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <utility>
 #include "Course.h"
 
 void initCourseList(std::vector<Course>& v);
+double GPACalculator(std::vector<Course> v);
 
 int main()
 {
@@ -17,16 +19,8 @@ int main()
 	std::vector<Course> cList(size);
 	initCourseList(cList);
 
-	std::cout << "Your total GPA is:";
-
-	for (int i = 0; i < size; ++i) {
-		GPA += cList[i].getQP();
-	}
-	int credz = 0;
-	for (int i = 0; i < size; ++i) {
-		credz += cList[i].getcredits();
-	}
-	std::cout << GPA / credz;
+	GPA = GPACalculator(cList);
+	std::cout << "Your total GPA is:" << GPA;
 }
 
 void initCourseList(std::vector<Course>& v) {
@@ -53,4 +47,15 @@ void initCourseList(std::vector<Course>& v) {
 		//gives Course GPA
 		std::cout << "Your quality points for your " << v[i].getname() << " course is " << v[i].getQP()/v[i].getcredits() << std::endl;
 	}
+}
+
+double GPACalculator(std::vector<Course> v) {
+	std::pair<double, int> result;
+	for (int i = 0; i < v.size(); ++i) {
+		result.first += v[i].getQP();
+	}
+	for (int i = 0; i < v.size(); ++i) {
+		result.second += v[i].getcredits();
+	}
+	return result.first / result.second;
 }
