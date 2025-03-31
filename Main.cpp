@@ -2,10 +2,11 @@
 #include <vector>
 #include "Course.h"
 
+void initCourseList(std::vector<Course>& v);
+
 int main()
 {
 	double GPA = 0.0;
-	std::vector<Course> cList(10);
 	int size = 0;
 
 	std::cout << "How many cources have you taken? ";
@@ -13,26 +14,8 @@ int main()
 	if (size < 0) {
 		size *= -1;
 	}
-
-	for (int i = 0; i < size; ++i) {
-		std::string courseName = "";
-		int courseCredits = 0;
-		std::string courseGrade = "";
-		cList.push_back(Course());
-
-		std::cout << "\tWhat is the name of the " << i+1<< " course? ";
-		std::cin >> courseName;
-		std::cout << "\tWhat is the number of credits for the " << i + 1 << " course? ";
-		std::cin >> courseCredits;
-		std::cout << "\tWhat is the your grade for the " << i + 1 << " course? ";
-		std::cin >> courseGrade;
-		cList[i].setname(courseName);
-		cList[i].setcredits(courseCredits);
-		cList[i].setGrade(courseGrade);
-		cList[i].updateQP();
-		std::cout << "Your quality points for course " << cList[i].getname() << " is " << cList[i].getQP() << std::endl;
-	}
-	
+	std::vector<Course> cList(size);
+	initCourseList(cList);
 
 	std::cout << "Your total GPA is:";
 
@@ -44,4 +27,30 @@ int main()
 		credz += cList[i].getcredits();
 	}
 	std::cout << GPA / credz;
+}
+
+void initCourseList(std::vector<Course>& v) {
+	for (int i = 0; i < v.size(); ++i) {
+		//Course parameter fillin data
+		std::string courseName = "";
+		int courseCredits = 0;
+		std::string courseGrade = "";
+
+		//Ask for Course data
+		std::cout << "\tWhat is the name of the " << i + 1 << " course? ";
+		std::cin >> courseName;
+		std::cout << "\tWhat is the number of credits for the " << i + 1 << " course? ";
+		std::cin >> courseCredits;
+		std::cout << "\tWhat is the your grade for the " << i + 1 << " course? ";
+		std::cin >> courseGrade;
+
+		//Updates parameter data of course with given input
+		v[i].setname(courseName);
+		v[i].setcredits(courseCredits);
+		v[i].setGrade(courseGrade);
+		v[i].updateQP();
+
+		//gives Course GPA
+		std::cout << "Your quality points for your " << v[i].getname() << " course is " << v[i].getQP()/v[i].getcredits() << std::endl;
+	}
 }
