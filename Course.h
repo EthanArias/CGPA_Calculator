@@ -7,10 +7,12 @@ public:
 		name = "";
 		credits = 0;
 		grade = 0.0;
-		points = 0.0;
+		points = 0;
 	}
 	void setname(std::string n);
+	std::string getname();
 	void setcredits(int c);
+	int getcredits();
 	void setGrade(std::string score);
 	void updateQP();
 	double getQP();
@@ -23,6 +25,14 @@ private:
 
 inline void Course::setname(std::string n) {
 	name = n;
+}
+
+inline std::string Course::getname() {
+	return name;
+}
+
+inline int Course::getcredits() {
+	return credits;
 }
 
 inline void Course::setcredits(int c) {

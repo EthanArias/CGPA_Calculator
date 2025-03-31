@@ -4,6 +4,7 @@
 
 int main()
 {
+	double GPA = 0.0;
 	std::vector<Course> cList(10);
 	int size = 0;
 
@@ -26,9 +27,24 @@ int main()
 		std::cout << "\tWhat is the your grade for the " << i + 1 << "course?" << std::endl;
 		std::cin >> courseGrade;
 
-		cList[cList.size()].setname(courseName);
-		cList[cList.size()].setcredits(courseCredits);
-		cList[cList.size()].setGrade(courseGrade);
-		cList[cList.size()].updateQP();
+		cList[i].setname(courseName);
+		cList[i].setcredits(courseCredits);
+		cList[i].setGrade(courseGrade);
+		cList[i].updateQP();
 	}
+
+	for (int i = 0; i < size; ++i) {
+		std::cout << "Your quality points for course " << cList[i].getname() << " is " << cList[i].getQP()<< std::endl;
+	}
+
+	std::cout << "Your total GPA is:";
+
+	for (int i = 0; i < size; ++i) {
+		GPA += cList[i].getQP();
+	}
+	int credz = 0;
+	for (int i = 0; i < size; ++i) {
+		credz += cList[i].getcredits();
+	}
+	std::cout << GPA / credz;
 }
