@@ -3,24 +3,26 @@
 #include <utility>
 #include "Course.h"
 
+int getSize();
 void initCourseList(std::vector<Course>& v);
 double GPACalculator(std::vector<Course> v);
 
 int main()
 {
-	double GPA = 0.0;
-	int size = 0;
+	std::vector<Course> cList(getSize());
+	initCourseList(cList);
 
+	std::cout << "Your total GPA is:" << GPACalculator(cList);
+}
+
+int getSize() {
+	int size;
 	std::cout << "How many cources have you taken? ";
 	std::cin >> size;
 	if (size < 0) {
 		size *= -1;
 	}
-	std::vector<Course> cList(size);
-	initCourseList(cList);
-
-	GPA = GPACalculator(cList);
-	std::cout << "Your total GPA is:" << GPA;
+	return size;
 }
 
 void initCourseList(std::vector<Course>& v) {
